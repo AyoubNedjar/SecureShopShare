@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/img/bg_shop.png');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+    height: 100vh; /* Remplit la hauteur de la fenêtre */
+    color: white; /* Texte blanc pour contraster avec l'image */
+    font-family: Arial, sans-serif; /* Police du texte */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Style pour le conteneur de texte */
+.container {
+    background-color: rgba(0, 0, 0, 0.5); /* Fond noir semi-transparent */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Style pour le bouton */
+.btn-login {
+    display: inline-block;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-login:hover {
+    background-color: #0056b3;
+}
