@@ -67,6 +67,12 @@ return [
 
     'timezone' => env('APP_TIMEZONE', 'UTC'),
 
+
+
+    //code pour devenir modérateur 
+    'moderator_code' => env('MODERATOR_CODE', 'fallbackCodeHere'),
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

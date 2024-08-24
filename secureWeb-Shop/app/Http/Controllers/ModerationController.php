@@ -5,17 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Boutique;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ModerationController extends Controller
 {
     // Affiche la liste des éléments à modérer
     public function index()
-    {
-        $boutiques = Boutique::where('status', 'pending')->get();
-        $articles = Article::where('status', 'pending')->get();
+{
+    $boutiques = Boutique::with('user')->where('status', 'pending')->get();
+    $articles = Article::with(['user'])->where('status', 'pending')->get();
 
-        return view('moderations.index', compact('boutiques', 'articles'));
-    }
+
+    // Debugging: check if any article or boutique is missing a user
+
+
+    return view('moderations.index', compact('boutiques', 'articles'));
+}
 
     // Met à jour le statut d'une boutique ou d'un article (approbation/rejet)
     public function update(Request $request, $id)

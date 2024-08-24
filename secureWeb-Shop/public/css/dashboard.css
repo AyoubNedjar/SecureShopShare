@@ -1,108 +1,75 @@
-/* General styles */
+/* Styles généraux */
 .dashboard-container {
     padding: 20px;
     font-family: Arial, sans-serif;
 }
 
+.spacing-bottom {
+    margin-bottom: 40px; /* Ajustez la valeur selon vos besoins */
+}
 .content-wrapper {
     max-width: 1200px;
     margin: auto;
+    display: flex; /* Active l'affichage en flexbox pour le conteneur */
+    flex-wrap: wrap; /* Permet le passage à la ligne si nécessaire */
+    gap: 20px; /* Espacement entre les sections */
+    justify-content: space-between; /* Espacement égal entre les sections */
 }
 
+/* Styles pour les sections */
 .section {
-    margin-bottom: 40px;
+    background-color: #f9f9f9; /* Fond léger pour faire ressortir les sections */
+    border: 2px solid transparent; /* Bordure transparente pour gérer les espacements */
+    padding: 20px; /* Espacement intérieur */
+    margin-bottom: 20px; /* Espacement extérieur en bas */
+    text-align: center; /* Centrer le texte et les éléments */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
+    flex: 1; /* Chaque section prendra une largeur égale */
+    min-width: 300px; /* Largeur minimale pour chaque section */
+    max-width: 100%; /* Largeur maximale pour éviter les débordements */
 }
 
+/* Bordures colorées pour Articles et Boutiques */
+.boutiques-section {
+    border-color: #007bff; /* Couleur de la bordure pour les boutiques */
+}
+
+.articles-section {
+    border-color: #28a745; /* Couleur de la bordure pour les articles */
+}
+
+/* Style de la section Modération */
+.moderation-section {
+    background-color: #f9f9f9; /* Fond léger */
+    border: 2px solid transparent; /* Bordure transparente pour le style */
+    padding: 20px; /* Espacement intérieur */
+    margin-bottom: 20px; /* Espacement extérieur en bas */
+    text-align: center; /* Centrer le texte et les éléments */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
+    flex: 0 1 300px; /* Flex-grow et flex-shrink contrôlés pour la taille réduite */
+}
+
+/* Styles des titres */
 .section-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #333;
+    font-size: 24px; /* Taille du texte */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 15px; /* Espacement sous le titre */
 }
 
-.no-items-message {
-    color: #666;
-    font-style: italic;
+/* Spécifique aux sections Articles et Boutiques */
+.boutiques-section .section-title {
+    color: #007bff; /* Couleur du titre pour les boutiques */
 }
 
-.list {
-    list-style-type: none;
-    padding: 0;
+.articles-section .section-title {
+    color: #28a745; /* Couleur du titre pour les articles */
 }
 
-.list-item {
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.item-link {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-}
-
-.item-link:hover {
-    text-decoration: underline;
-}
-
-.actions {
-    margin-top: 10px;
-}
-
-.btn {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.btn-secondary {
-    background-color: #6c757d;
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #5a6268;
-}
-
-.btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-}
-
-.btn-success {
-    background-color: #28a745;
-    color: #fff;
-}
-
-.btn-success:hover {
-    background-color: #218838;
-}
-
-/* General form styles */
+/* Styles du formulaire */
 .container {
     padding: 20px;
-}
-
-.content-wrapper {
-    max-width: 800px;
-    margin: auto;
 }
 
 .form-group {
@@ -142,3 +109,78 @@
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Styles spécifiques pour la section devenir modérateur */
+.become-moderator-section {
+    background-color: #f9f9f9; /* Fond léger pour faire ressortir la section */
+    border: 2px dashed #4a90e2; /* Bordure en pointillé pour attirer l'attention */
+    padding: 20px; /* Espacement intérieur */
+    margin-bottom: 20px; /* Espacement extérieur en bas */
+    text-align: center; /* Centrer le texte et les éléments */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour l'effet de profondeur */
+}
+
+.become-moderator-section .btn-secondary {
+    font-size: 18px; /* Taille du texte du bouton */
+    background-color: #4a90e2; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    padding: 10px 20px; /* Espacement intérieur du bouton */
+    border: none; /* Suppression des bordures */
+    border-radius: 5px; /* Coins arrondis du bouton */
+    cursor: pointer; /* Changement du curseur au survol */
+    transition: background-color 0.3s ease; /* Transition douce pour le changement de couleur */
+}
+
+.become-moderator-section .btn-secondary:hover {
+    background-color: #357ABD; /* Couleur de fond du bouton au survol */
+}
+
+/* Styles spécifiques pour le bouton de modération */
+.moderation-section .btn-moderation {
+    font-size: 18px; /* Taille du texte du bouton */
+    background-color: #dc3545; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    padding: 15px 30px; /* Espacement intérieur du bouton */
+    border: none; /* Suppression des bordures */
+    border-radius: 8px; /* Coins arrondis du bouton */
+    cursor: pointer; /* Changement du curseur au survol */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition douce pour les changements */
+    text-decoration: none; /* Suppression de la décoration du texte */
+    display: inline-block; /* Assure que le bouton est au bon endroit */
+    text-align: center; /* Centrer le texte du bouton */
+}
+
+.moderation-section .btn-moderation:hover {
+    background-color: #c82333; /* Couleur de fond du bouton au survol */
+    transform: scale(1.05); /* Légère augmentation de la taille du bouton au survol */
+}
+/* Ajoutez ce code dans votre fichier CSS */
+

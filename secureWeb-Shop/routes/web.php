@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BoutiqueController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ModerationController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,11 +26,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// web.php
+Route::get('/promote', [UserController::class, 'showPromotionForm'])->name('user.showPromotionForm');
+
+// Route pour traiter le code une fois qu'il est entré
+Route::post('/promote', [UserController::class, 'promote'])->name('user.promote');
 
 
 
 // Routes pour gérer les boutiques (CRUD complet)
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function () {  
     Route::resource('boutiques', BoutiqueController::class);
 });
 
@@ -39,7 +45,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Routes pour la modération (uniquement pour les modérateurs)
-Route::middleware(['auth', 'moderator'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::resource('moderations', ModerationController::class)->only(['index', 'update']);
 });
 

@@ -15,13 +15,21 @@ class Article extends Model
         'title',
         'description',
         'price',
+        'user_id',
         'boutique_id',
         'status', // Ajout d'un champ de statut pour la modération (e.g., 'pending', 'approved', 'rejected')
+        
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     // Relation entre un article et sa boutique (un article appartient à une boutique)
     public function boutique()
     {
         return $this->belongsTo(Boutique::class);
     }
+   
 }

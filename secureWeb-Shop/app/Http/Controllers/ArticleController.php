@@ -31,8 +31,11 @@ class ArticleController extends Controller
             'price' => 'required|numeric',
             'boutique_id' => 'required|exists:boutiques,id',
         ]);
-
-        Article::create($request->all());
+    
+        // Créer un nouvel article en ajoutant manuellement l'user_id
+        $article = new Article($request->all());
+        $article->user_id = auth()->id(); // Associe l'article à l'utilisateur connecté
+        $article->save();
 
         return redirect()->route('articles.index')->with('success', 'Article créé avec succès.');
     }

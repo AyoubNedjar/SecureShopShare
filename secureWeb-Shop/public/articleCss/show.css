@@ -1,0 +1,47 @@
+/* resources/css/article-show.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.article-details {
+    margin-bottom: 20px;
+}
+
+.article-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.article-description {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.article-price {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.article-boutique,
+.article-creator {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.item-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.item-link:hover {
+    text-decoration: underline;
+}

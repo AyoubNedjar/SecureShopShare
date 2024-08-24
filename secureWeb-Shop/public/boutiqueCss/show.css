@@ -1,0 +1,50 @@
+/* resources/css/boutique-show.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.boutique-details {
+    margin-bottom: 20px;
+}
+
+.boutique-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.boutique-description {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.article-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.article-item {
+    margin-bottom: 10px;
+}
+
+.item-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.item-link:hover {
+    text-decoration: underline;
+}

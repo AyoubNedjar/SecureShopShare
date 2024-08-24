@@ -1,0 +1,65 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.content-wrapper {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.moderation-list {
+    list-style: none;
+    padding: 0;
+}
+
+.moderation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.moderation-item strong {
+    font-size: 18px;
+}
+
+.moderation-item p {
+    margin: 5px 0;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.actions .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.actions .btn-success {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions .btn:hover {
+    opacity: 0.8;
+}
