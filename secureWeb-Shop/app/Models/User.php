@@ -15,12 +15,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'role', // Ajoutez 'role' ici
+        'totp_secret', // Ajout du champ pour le secret TOTP
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
+        'totp_secret', // Cache le secret TOTP
     ];
 
     protected $casts = [
