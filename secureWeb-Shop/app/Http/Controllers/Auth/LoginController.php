@@ -19,13 +19,15 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
+            'totp' => 'required|string',
+
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-
+            
             return redirect()->intended('dashboard');
         }
 
