@@ -11,8 +11,27 @@
                 <h3 class="article-title">{{ $article->title }}</h3>
                 <p class="article-description">{{ $article->description }}</p>
                 <p class="article-price">{{ __('Price') }}: ${{ $article->price }}</p>
-                <p class="article-boutique">{{ __('Shop') }}: <a href="{{ route('boutiques.show', $article->boutique->id) }}" class="item-link">{{ $article->boutique->name }}</a></p>
-                <p class="article-creator">{{ __('Created by') }}: {{ $article->user->name }}</p>
+
+                <!-- Vérification de l'existence de la relation boutique -->
+                @if($article->boutique)
+                    <p class="article-boutique">
+                        {{ __('Shop') }}: 
+                        <a href="{{ route('boutiques.show', $article->boutique->id) }}" class="item-link">
+                            {{ $article->boutique->name }}
+                        </a>
+                    </p>
+                @else
+                    <p class="article-boutique">{{ __('Shop information not available') }}</p>
+                @endif
+
+                <!-- Vérification de l'existence de la relation user -->
+                @if($article->user)
+                    <p class="article-creator">
+                        {{ __('Created by') }}: {{ $article->user->name }}
+                    </p>
+                @else
+                    <p class="article-creator">{{ __('Creator information not available') }}</p>
+                @endif
 
                 <!-- Affichage de l'image décryptée -->
                 @if($imageUrl)
@@ -23,7 +42,7 @@
                 @endif
             </div>
 
-            <!-- Share Form -->
+            <!-- Formulaire de partage -->
             <div class="share-section">
                 <h4>{{ __('Share This Article') }}</h4>
                 <form action="{{ route('articles.share', $article->id) }}" method="POST">

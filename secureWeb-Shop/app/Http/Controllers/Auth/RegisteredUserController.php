@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -13,12 +12,10 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Closure;
+use phpseclib3\Crypt\RSA;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create()
     {
         $verificationCode = Str::random(6);
@@ -28,11 +25,6 @@ class RegisteredUserController extends Controller
         return view('auth.register', compact('encryptedCode'));
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -58,12 +50,17 @@ class RegisteredUserController extends Controller
             }]
         ]);
 
-
+        // Génération des clés RSA
+        $rsa = RSA::createKey(2048);
+        $publicKey = $rsa->getPublicKey()->toString('PKCS8');
+        $privateKey = encrypt($rsa->toString('PKCS8')); // Chiffrer la clé privée
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'public_key' => $publicKey,
+            'private_key' => $privateKey,
         ]);
 
         event(new Registered($user));

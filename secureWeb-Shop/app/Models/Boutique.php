@@ -8,19 +8,36 @@ use Illuminate\Database\Eloquent\Model;
 class Boutique extends Model
 {
     use HasFactory;
-    protected $table = 'boutiques';
 
-    // Définition des champs qui peuvent être massivement assignés
     protected $fillable = [
         'name',
         'description',
         'user_id',
         'status',
         'share_type',
-        'shared_with_user_id', // Ajout d'un champ de statut pour la modération (e.g., 'pending', 'approved', 'rejected')
+        'shared_with_user_id',
     ];
 
-    // Relation entre une boutique et ses articles (une boutique a plusieurs articles)
+    public function getNameAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = encrypt($value);
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        return decrypt($value);
+    }
+
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = encrypt($value);
+    }
+
     public function articles()
     {
         return $this->hasMany(Article::class);
@@ -31,3 +48,4 @@ class Boutique extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 }
+

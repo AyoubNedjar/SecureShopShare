@@ -3,40 +3,79 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Crypt;
 
 class Article extends Model
 {
-    // Ajoutez les nouvelles colonnes au tableau $fillable
+    // Déclaration des attributs remplissables
     protected $fillable = [
-        'title',
-        'description',
-        'price',
-        'boutique_id',
-        'share_type',
-        'shared_with_user_id',
-        'image_path'
+        'title', 
+        'description', 
+        'price', 
+        'user_id', 
+        'image_path', 
+        'encrypted_image', 
+        'boutique_id'
     ];
 
-    // Relations
-    public function user()
+    // Accesseur pour le titre
+    public function getTitleAttribute($value)
     {
-        return $this->belongsTo(User::class);
+        return Crypt::decryptString($value);
     }
 
-    public function boutique()
+    // Mutateur pour le titre
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = Crypt::encryptString($value);
+    }
+
+    // Accesseur pour la description
+    public function getDescriptionAttribute($value)
+    {
+        return Crypt::decryptString($value);
+    }
+
+    // Mutateur pour la description
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = Crypt::encryptString($value);
+    }
+
+    // Accesseur pour le prix
+    public function getPriceAttribute($value)
+    {
+        return Crypt::decryptString($value);
+    }
+
+    // Mutateur pour le prix
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = Crypt::encryptString($value);
+    }
+
+    // Accesseur pour l'image cryptée
+    public function getEncryptedImageAttribute($value)
+    {
+        return Crypt::decryptString($value);
+    }
+
+    // Mutateur pour l'image cryptée
+    public function setEncryptedImageAttribute($value)
+    {
+        $this->attributes['encrypted_image'] = Crypt::encryptString($value);
+    }
+
+    // Déclaration de la relation avec Boutique
+    public function boutique(): BelongsTo
     {
         return $this->belongsTo(Boutique::class);
     }
 
-    // Relation pour l'utilisateur avec lequel l'article est partagé
-    public function sharedWithUser()
+    // Déclaration de la relation avec User
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'shared_with_user_id');
-    }
-
-    // Accessor pour obtenir le type de partage
-    public function getShareTypeAttribute($value)
-    {
-        return ucfirst($value);
+        return $this->belongsTo(User::class);
     }
 }
