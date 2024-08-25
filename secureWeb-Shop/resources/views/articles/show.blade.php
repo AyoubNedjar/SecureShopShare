@@ -13,6 +13,14 @@
                 <p class="article-price">{{ __('Price') }}: ${{ $article->price }}</p>
                 <p class="article-boutique">{{ __('Shop') }}: <a href="{{ route('boutiques.show', $article->boutique->id) }}" class="item-link">{{ $article->boutique->name }}</a></p>
                 <p class="article-creator">{{ __('Created by') }}: {{ $article->user->name }}</p>
+
+                <!-- Affichage de l'image décryptée -->
+                @if($imageUrl)
+                    <h4>{{ __('Image') }}</h4>
+                    <img src="{{ $imageUrl }}" alt="Article Image" style="max-width: 50%; height: auto;">
+                @else
+                    <p>{{ __('No image available') }}</p>
+                @endif
             </div>
 
             <!-- Share Form -->

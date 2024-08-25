@@ -10,7 +10,7 @@ use App\Http\Controllers\BoutiqueController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ModerationController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ImageUploadController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/articles/{article}/share', [ArticleController::class, 'share'])->name('articles.share');
 Route::post('/boutiques/{boutique}/share', [BoutiqueController::class, 'share'])->name('boutiques.share');
+
 
 //fin logique du shop
 

@@ -14,6 +14,7 @@ class Article extends Model
         'boutique_id',
         'share_type',
         'shared_with_user_id',
+        'image_path'
     ];
 
     // Relations

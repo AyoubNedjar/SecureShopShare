@@ -7,7 +7,7 @@
 
     <div class="container">
         <div class="content-wrapper">
-            <form action="{{ route('articles.store') }}" method="POST">
+            <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
@@ -48,6 +48,27 @@
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
+
+                <h1>{{ __('Upload and Secure an Image') }}</h1>
+
+                <div class="form-group">
+                    <input type="file" id="image" name="image" class="form-control" >
+                    @error('image')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                @if(isset($imageUrl))
+                    <h2>{{ __('Uploaded Image:') }}</h2>
+                    <div class="image-container">
+                        <img src="{{ $imageUrl }}" alt="{{ __('Uploaded Image') }}">
+                    </div>
+                @endif
+
+                @if(isset($encryptedImage))
+                    <h2>{{ __('Encrypted Image Data:') }}</h2>
+                    <div id="encryptedText">{{ $encryptedImage }}</div>
+                @endif
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">{{ __('Create Article') }}</button>
