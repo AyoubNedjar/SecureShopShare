@@ -49,9 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('moderations', ModerationController::class)->only(['index', 'update']);
 });
 
-
-
-
+Route::post('/articles/{article}/share', [ArticleController::class, 'share'])->name('articles.share');
+Route::post('/boutiques/{boutique}/share', [BoutiqueController::class, 'share'])->name('boutiques.share');
 
 //fin logique du shop
 

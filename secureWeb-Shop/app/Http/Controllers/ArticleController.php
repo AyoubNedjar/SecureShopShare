@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Boutique;
 use Illuminate\Http\Request;
+use App\Models\User; 
 
 class ArticleController extends Controller
 {
@@ -42,9 +43,13 @@ class ArticleController extends Controller
 
     // Affiche les détails d'un article spécifique
     public function show(Article $article)
-    {
-        return view('articles.show', compact('article'));
-    }
+{
+    // Récupère tous les utilisateurs sauf l'utilisateur actuel
+    $users = User::all();
+    
+    // Passe l'article et les utilisateurs à la vue
+    return view('articles.show', compact('article', 'users'));
+}
 
     // Affiche le formulaire d'édition d'un article spécifique
     public function edit(Article $article)
@@ -75,4 +80,21 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index')->with('success', 'Article supprimé avec succès.');
     }
+    // App/Http/Controllers/ArticleController.php
+
+    public function share(Request $request, Article $article)
+    {
+        $request->validate([
+            'share_type' => 'required|in:public,private',
+            'shared_with_user_id' => 'nullable|exists:users,id',
+        ]);
+
+        $article->update([
+            'share_type' => $request->input('share_type'),
+            'shared_with_user_id' => $request->input('share_type') === 'private' ? $request->input('shared_with_user_id') : null,
+        ]);
+
+        return redirect()->route('articles.show', $article->id)->with('success', 'Article shared successfully.');
+    }
+
 }

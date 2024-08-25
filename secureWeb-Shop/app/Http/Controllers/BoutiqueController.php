@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Boutique;
 use Illuminate\Http\Request;
+use App\Models\User; 
 
 class BoutiqueController extends Controller
 {
@@ -45,7 +46,8 @@ class BoutiqueController extends Controller
     // Affiche les détails d'une boutique spécifique
     public function show(Boutique $boutique)
     {
-        return view('boutiques.show', compact('boutique'));
+        $users = User::all(); 
+        return view('boutiques.show', compact('boutique', 'users'));
     }
 
     // Affiche le formulaire d'édition d'une boutique spécifique
@@ -73,5 +75,23 @@ class BoutiqueController extends Controller
         $boutique->delete();
 
         return redirect()->route('boutiques.index')->with('success', 'Boutique supprimée avec succès.');
+    }
+
+    public function share(Request $request, Boutique $boutique)
+    {
+        // Valider les données de la requête
+        $request->validate([
+            'share_type' => 'required|in:public,private',
+            'shared_with_user_id' => 'nullable|exists:users,id',
+        ]);
+
+        // Mettre à jour les informations de partage de la boutique
+        $boutique->update([
+            'share_type' => $request->input('share_type'),
+            'shared_with_user_id' => $request->input('share_type') === 'private' ? $request->input('shared_with_user_id') : null,
+        ]);
+
+        // Rediriger vers la page de la boutique avec un message de succès
+        return redirect()->route('boutiques.show', $boutique->id)->with('success', 'Boutique partagée avec succès.');
     }
 }

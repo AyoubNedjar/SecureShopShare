@@ -12,8 +12,14 @@ class ModerationController extends Controller
     // Affiche la liste des éléments à modérer
     public function index()
 {
-    $boutiques = Boutique::with('user')->where('status', 'pending')->get();
-    $articles = Article::with(['user'])->where('status', 'pending')->get();
+    $boutiques = Boutique::where('status', 'pending')
+                             ->where('share_type', 'public')  // Assurez-vous que votre modèle a un champ share_type pour les boutiques
+                             ->get();
+
+        // Récupérer les articles en attente d'approbation et partagés publiquement
+        $articles = Article::where('status', 'pending')
+                           ->where('share_type', 'public')  // Assurez-vous que votre modèle a un champ share_type pour les articles
+                           ->get();
 
 
     // Debugging: check if any article or boutique is missing a user
@@ -28,14 +34,19 @@ class ModerationController extends Controller
         $type = $request->input('type');
         $status = $request->input('status');
 
-        if ($type == 'boutique') {
-            $boutique = Boutique::findOrFail($id);
-            $boutique->update(['status' => $status]);
-        } elseif ($type == 'article') {
-            $article = Article::findOrFail($id);
-            $article->update(['status' => $status]);
+        if ($type === 'article') {
+            $item = Article::findOrFail($id);
+        } elseif ($type === 'boutique') {
+            $item = Boutique::findOrFail($id);
+        } else {
+            return redirect()->back()->with('error', 'Invalid type.');
         }
 
-        return redirect()->route('moderations.index')->with('success', 'Statut mis à jour avec succès.');
+        // Mettre à jour le statut
+        $item->status = $status;
+        $item->save();
+
+        // Rediriger avec un message de succès
+        return redirect()->back()->with('success', 'Item updated successfully.');
     }
 }

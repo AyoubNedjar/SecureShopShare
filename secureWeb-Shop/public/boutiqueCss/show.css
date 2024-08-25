@@ -48,3 +48,67 @@
 .item-link:hover {
     text-decoration: underline;
 }
+/* resources/css/boutique-share.css */
+
+/* Container pour la section de partage */
+.share-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre de la section de partage */
+.share-section h4 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Style pour les labels et les options de partage */
+.share-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.share-section input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Style pour la liste déroulante des utilisateurs */
+#user-selection {
+    margin-top: 10px;
+}
+
+#user-selection select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style pour le bouton de partage */
+.share-section button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.share-section button:hover {
+    background-color: #0056b3;
+}
+
+.share-section button:focus {
+    outline: none;
+}

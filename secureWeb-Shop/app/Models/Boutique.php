@@ -15,7 +15,9 @@ class Boutique extends Model
         'name',
         'description',
         'user_id',
-        'status', // Ajout d'un champ de statut pour la modération (e.g., 'pending', 'approved', 'rejected')
+        'status',
+        'share_type',
+        'shared_with_user_id', // Ajout d'un champ de statut pour la modération (e.g., 'pending', 'approved', 'rejected')
     ];
 
     // Relation entre une boutique et ses articles (une boutique a plusieurs articles)

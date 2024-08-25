@@ -45,3 +45,62 @@
 .item-link:hover {
     text-decoration: underline;
 }
+/* Styles de base pour le bouton */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Styles pour le bouton primaire */
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+}
+
+/* Styles pour la section de partage */
+.share-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.share-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.share-section form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.share-section select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}

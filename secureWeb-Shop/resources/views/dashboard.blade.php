@@ -32,9 +32,7 @@
             <button type="submit" class="btn btn-secondary">{{ __('Devenir modérateur') }}</button>
         </form>
     </div>
-
     @endif
-
 
     <div class="dashboard-container">
         <div class="content-wrapper">
@@ -81,7 +79,7 @@
             <!-- Articles Section -->
             <div class="section articles-section">
                 <h3 class="section-title">{{ __('My Articles') }}</h3>
-                <a href="{{ route('articles.create') }}" class="btn btn-primary spacing-bottom" >{{ __('Add New Article') }}</a>
+                <a href="{{ route('articles.create') }}" class="btn btn-primary spacing-bottom">{{ __('Add New Article') }}</a>
                 
                 @if($articles->isEmpty())
                     <p class="no-items-message">{{ __("You don't have any articles yet. Add your first article!") }}</p>
@@ -104,15 +102,87 @@
                 @endif
             </div>
 
+            <!-- Publicly Shared Boutiques Section -->
+            <div class="section public-boutiques-section">
+                <h3 class="section-title">{{ __('Publicly Shared Shops') }}</h3>
+                @if($publicBoutiques->isEmpty())
+                    <p class="no-items-message">{{ __('No publicly shared shops found.') }}</p>
+                @else
+                    <ul class="list boutiques-list">
+                        @foreach($publicBoutiques as $boutique)
+                            <li class="list-item boutique-item">
+                                <a href="{{ route('boutiques.show', $boutique->id) }}" class="item-link">{{ $boutique->name }}</a>
+                                <p class="boutique-description">{{ $boutique->description }}</p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Boutiques Shared with User Section -->
+            <div class="section shared-with-user-boutiques-section">
+                <h3 class="section-title">{{ __('Shops Shared with You') }}</h3>
+                @if($sharedWithUserBoutiques->isEmpty())
+                    <p class="no-items-message">{{ __('No shops shared with you found.') }}</p>
+                @else
+                    <ul class="list boutiques-list">
+                        @foreach($sharedWithUserBoutiques as $boutique)
+                            <li class="list-item boutique-item">
+                                <a href="{{ route('boutiques.show', $boutique->id) }}" class="item-link">{{ $boutique->name }}</a>
+                                <p class="boutique-description">{{ $boutique->description }}</p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Publicly Shared Articles Section -->
+            <div class="section public-articles-section">
+                <h3 class="section-title">{{ __('Publicly Shared Articles') }}</h3>
+                @if($publicArticles->isEmpty())
+                    <p class="no-items-message">{{ __('No publicly shared articles found.') }}</p>
+                @else
+                    <ul class="list articles-list">
+                        @foreach($publicArticles as $article)
+                            <li class="list-item article-item">
+                                <a href="{{ route('articles.show', $article->id) }}" class="item-link">{{ $article->title }}</a>
+                                <p class="article-description">{{ $article->description }}</p>
+                                <p class="article-price">{{ __('Price') }}: ${{ $article->price }}</p>
+                                <p class="article-boutique">{{ __('In shop') }}: <a href="{{ route('boutiques.show', $article->boutique->id) }}" class="item-link">{{ $article->boutique->name }}</a></p>
+                                <p class="article-creator">{{ __('Created by') }}: {{ $article->user->name }}</p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+
+            <!-- Articles Shared with User Section -->
+            <div class="section private-articles-section">
+                <h3 class="section-title">{{ __('Articles Shared with You') }}</h3>
+                @if($privateArticles->isEmpty())
+                    <p class="no-items-message">{{ __('No articles shared with you found.') }}</p>
+                @else
+                    <ul class="list articles-list">
+                        @foreach($privateArticles as $article)
+                            <li class="list-item article-item">
+                                <a href="{{ route('articles.show', $article->id) }}" class="item-link">{{ $article->title }}</a>
+                                <p class="article-description">{{ $article->description }}</p>
+                                <p class="article-price">{{ __('Price') }}: ${{ $article->price }}</p>
+                                <p class="article-boutique">{{ __('In shop') }}: <a href="{{ route('boutiques.show', $article->boutique->id) }}" class="item-link">{{ $article->boutique->name }}</a></p>
+                                <p class="article-creator">{{ __('Created by') }}: {{ $article->user->name }}</p>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
 
             <!-- Moderation Section (Visible only for moderators) -->
             @if(auth()->user()->isModerator())
             <div class="section moderation-section">
-                    <h3 class="section-title">{{ __('Moderation') }}</h3>
-                    <a href="{{ route('moderations.index') }}" class="btn btn-warning">{{ __('Go to Moderation') }}</a>
+                <h3 class="section-title">{{ __('Moderation') }}</h3>
+                <a href="{{ route('moderations.index') }}" class="btn btn-warning">{{ __('Go to Moderation') }}</a>
             </div>
             @endif
-
         </div>
     </div>
 </x-app-layout>
